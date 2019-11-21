@@ -264,7 +264,6 @@ input {
 }
 
 ul {
-  font-size: 12px;
   color: #424242;
   text-align: left;
   list-style: none;
@@ -272,6 +271,7 @@ ul {
   background-clip: padding-box;
   padding: 0px;
   margin: 2px 0px 0px 0px;
+  height: 300px;
 }
 
 .v-select {
@@ -309,8 +309,6 @@ ul {
   white-space: nowrap;
   border: 1px solid transparent;
   padding: 0.375rem 0.75rem;
-  font-size: 12px;
-  font-family: inherit, sans-serif;
   line-height: 1.5;
   border-radius: 0.25rem;
   transition: background-color, border-color, box-shadow, 0.15s ease-in-out;
@@ -392,7 +390,6 @@ ul {
     display: block;
     width: 100%;
     padding: 0.375rem 0.75rem;
-    font-size: 1rem;
     line-height: 1.5;
     color: #495057;
     background-color: #fff;
