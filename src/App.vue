@@ -33,6 +33,7 @@
       v-model="selectedContinent"
       :options="contients"
       :disabled="disabledContinent"
+      @searchChanged="onSearchChanged"
       disabled-prop="inactive"
       :searchable="searchableContinent"/>
   </div>
@@ -70,6 +71,22 @@ export default {
       searchableContinent: false,
       disabledContinent: false
     };
+  },
+  methods: {
+    onSearchChanged(search) {
+      if (search.length < 2) {
+        return;
+      }
+      setTimeout(() => {
+        this.contients = [
+          { value: 6, text: "Russia" },
+          { value: 7, text: "Belarus" },
+          { value: 8, text: "Ukraine" },
+          { value: 9, text: "Japan" },
+          { value: 10, text: "Kazakstan" }
+        ];
+      }, 1000);
+    }
   }
 };
 </script>
