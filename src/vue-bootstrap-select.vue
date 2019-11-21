@@ -115,7 +115,6 @@ export default {
     },
     filteredOptions() {
       if (this.searchable && this.searchValue.length > 0) {
-        this.updatedSearchText();
         return this.options.filter(item => {
           if (typeof item === "object") {
             return (
@@ -148,6 +147,12 @@ export default {
         );
         this.onSelect(newVal, index);
       }
+    },
+    searchValue() {
+      clearTimeout(this.searchTimeout);
+      this.searchTimeout = setTimeout(() => {
+        this.$emit("searchChanged", this.searchValue);
+      }, this.eventTimeout);
     }
   },
   methods: {
@@ -229,12 +234,6 @@ export default {
         return this.isEqualOption(option, this.selectedValue);
       }
       return this.typeAheadPointer === index;
-    },
-    updatedSearchText() {
-      clearTimeout(this.searchTimeout);
-      this.searchTimeout = setTimeout(() => {
-        this.$emit("searchChanged", this.searchValue);
-      }, this.eventTimeout);
     },
     isEqualOption(a, b) {
       if (a && b && typeof a === "object" && typeof b === "object") {
