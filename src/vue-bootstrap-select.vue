@@ -271,7 +271,8 @@ ul {
   background-clip: padding-box;
   padding: 0px;
   margin: 2px 0px 0px 0px;
-  height: 300px;
+  max-height: 300px;
+  overflow-y: auto;
 }
 
 .v-select {

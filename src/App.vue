@@ -62,7 +62,12 @@ export default {
         { value: 2, text: "Asia" },
         { value: 3, text: "Europe" },
         { value: 4, text: "Oceania" },
-        { value: 5, text: "Antartica" }
+        { value: 5, text: "Antartica" },
+        { value: 6, text: "Russia" },
+        { value: 7, text: "Belarus" },
+        { value: 8, text: "Ukraine" },
+        { value: 9, text: "Japan" },
+        { value: 10, text: "Kazakstan" }
       ],
       selectedName: null,
       searchableName: false,
