@@ -35,6 +35,9 @@
       :disabled="disabledContinent"
       @searchChanged="onSearchChanged"
       disabled-prop="inactive"
+      add-item-label="Добавить новое"
+      loading-label="Поиск продолжается..."
+      :loading="true"
       :searchable="searchableContinent"/>
   </div>
 </template>

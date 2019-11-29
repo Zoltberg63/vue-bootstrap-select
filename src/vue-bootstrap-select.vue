@@ -22,10 +22,12 @@
         >
       </div>
       <ul>
+        <li v-show="addItemLabel"
+            class="v-dropdown-item"><a href="#" @click.prevent="addItemMethod" >{{ addItemLabel }}</a></li>
         <li
           v-show="searchable && filteredOptions.length === 0"
           class="v-dropdown-item"
-        >{{ labelNotFound }} "{{ searchValue }}"</li>
+        >{{ noItemsLabel }}</li>
         <li
           v-if="showDefaultOption"
           class="v-dropdown-item disabled default-option"
@@ -44,6 +46,7 @@
 
 <script>
 import { mixin as clickaway } from "vue-clickaway";
+import Swal from "sweetalert2";
 
 export default {
   name: "VSelect",
@@ -96,6 +99,18 @@ export default {
     eventTimeout: {
       type: Number,
       default: 2000
+    },
+    addItemLabel: {
+      type: String,
+      default: null
+    },
+    loading: {
+      type: Boolean,
+      default: false
+    },
+    loadingLabel: {
+      type: String,
+      default: "Loading..."
     }
   },
   data() {
@@ -136,6 +151,11 @@ export default {
     },
     lastOptionIndex() {
       return this.filteredOptions.length - 1;
+    },
+    noItemsLabel() {
+      return this.loading
+        ? this.loadingLabel
+        : `${this.labelNotFound} "${this.searchValue}"`;
     }
   },
   watch: {
@@ -248,6 +268,22 @@ export default {
       if (!this.disabled) {
         this.show = !this.show;
       }
+    },
+    addItemMethod() {
+      Swal.fire({
+        input: "text",
+        inputValue: this.searchValue,
+        showCancelButton: true
+      }).then(result => {
+        if (result.value) {
+          let addItem = {
+            [this.valueProp]: 0,
+            [this.textProp]: result.value
+          };
+          this.options.unshift(addItem);
+          this.onSelect(addItem, 0);
+        }
+      });
     }
   }
 };
