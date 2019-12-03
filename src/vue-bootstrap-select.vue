@@ -277,7 +277,6 @@ export default {
       }).then(result => {
         if (result.value) {
           let addItem = {
-            [this.valueProp]: null,
             [this.textProp]: result.value
           };
           this.options.unshift(addItem);
