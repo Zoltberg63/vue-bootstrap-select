@@ -17,9 +17,8 @@
           :placeholder="labelSearchPlaceholder"
           class="form-control"
           type="text"
-          v-model="searchValue"
-          autofocus
-        >
+          ref="search"
+          v-model="searchValue">
       </div>
       <ul>
         <li v-show="addItemLabel"
@@ -37,7 +36,7 @@
           :key="`v-select-${index}`"
           class="v-dropdown-item"
           :class="{'selected' : isSelectedOption(option, index), 'disabled': option[disabledProp]}"
-          @click="onSelect(option, index)"
+          @click.prevent="onSelect(option, index)"
         >{{ getOptionLabel(option) }}</li>
       </ul>
     </div>
@@ -173,6 +172,11 @@ export default {
       this.searchTimeout = setTimeout(() => {
         this.$emit("searchChanged", this.searchValue);
       }, this.eventTimeout);
+    },
+    show() {
+      if (this.show && this.searchable) {
+        this.$nextTick(() => this.$refs.search.focus());
+      }
     }
   },
   methods: {
