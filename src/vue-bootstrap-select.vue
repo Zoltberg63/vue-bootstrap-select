@@ -24,7 +24,7 @@
         <li v-show="addItemLabel"
             class="v-dropdown-item"><a href="#" @click.prevent="addItemMethod" >{{ addItemLabel }}</a></li>
         <li
-          v-show="searchable && filteredOptions.length === 0"
+          v-show="searchable && filteredOptions.length === 0 && searchValue.length !== 0"
           class="v-dropdown-item"
         >{{ noItemsLabel }}</li>
         <li
