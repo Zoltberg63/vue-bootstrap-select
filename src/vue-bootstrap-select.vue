@@ -123,9 +123,7 @@ export default {
   },
   computed: {
     title() {
-      return this.selectedValue
-        ? this.getOptionLabel(this.selectedValue)
-        : this.labelTitle;
+      return this.getOptionLabel(this.selectedValue) || this.labelTitle;
     },
     filteredOptions() {
       if (this.searchable && this.searchValue.length > 0) {
