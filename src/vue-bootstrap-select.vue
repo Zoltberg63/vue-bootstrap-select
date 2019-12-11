@@ -246,7 +246,7 @@ export default {
       this.searchValue = "";
     },
     getOptionLabel(option) {
-      if (typeof option === "object") {
+      if (typeof option === "object" && option !== null) {
         return option[this.textProp];
       }
       return option;
