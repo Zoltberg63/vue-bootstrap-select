@@ -7,7 +7,7 @@
     @keydown.enter.prevent="typeAheadSelect"
     class="v-select"
     :class="{'disabled': disabled}">
-    <button @click="toggle" type="button" class="v-select-toggle">
+    <button @click="toggle" type="button" class="v-select-toggle" :class="{'v-focus': show }">
       <div>{{ title }}</div>
       <div class="arrow-down"></div>
     </button>
@@ -110,6 +110,14 @@ export default {
     loadingLabel: {
       type: String,
       default: "Loading..."
+    },
+    confirmButtonText: {
+      type: String,
+      default: 'Ok'
+    },
+    cancelButtonText: {
+      type: String,
+      default: 'Cancel'
     }
   },
   data() {
@@ -273,9 +281,12 @@ export default {
     },
     addItemMethod() {
       Swal.fire({
+        title: this.addItemLabel,
         input: "text",
         inputValue: this.searchValue,
-        showCancelButton: true
+        showCancelButton: true,
+        confirmButtonText: this.confirmButtonText,
+        cancelButtonText: this.cancelButtonText
       }).then(result => {
         if (result.value) {
           let addItem = {
