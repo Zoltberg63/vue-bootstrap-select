@@ -11,7 +11,7 @@
       <div>{{ title }}</div>
       <div class="arrow-down"></div>
     </button>
-    <div v-show="show" class="v-dropdown-container">
+    <div v-show="show" class="v-dropdown-container" ref="dropdown-container">
       <div v-show="searchable" class="v-bs-searchbox">
         <input
           :placeholder="labelSearchPlaceholder"
@@ -113,11 +113,11 @@ export default {
     },
     confirmButtonText: {
       type: String,
-      default: 'Ok'
+      default: "Ok"
     },
     cancelButtonText: {
       type: String,
-      default: 'Cancel'
+      default: "Cancel"
     }
   },
   data() {
@@ -182,6 +182,14 @@ export default {
     show() {
       if (this.show && this.searchable) {
         this.$nextTick(() => this.$refs.search.focus());
+      }
+      if (this.show) {
+        this.$nextTick(() =>
+          this.$refs["dropdown-container"].scrollIntoView({
+            behavior: "smooth",
+            block: "center"
+          })
+        );
       }
     }
   },
