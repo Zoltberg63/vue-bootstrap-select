@@ -293,6 +293,7 @@ export default {
         input: "text",
         inputValue: this.searchValue,
         showCancelButton: true,
+        reverseButtons: true,
         confirmButtonText: this.confirmButtonText,
         cancelButtonText: this.cancelButtonText
       }).then(result => {
