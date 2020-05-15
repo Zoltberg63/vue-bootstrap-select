@@ -35,7 +35,8 @@
       :disabled="disabledContinent"
       @searchChanged="onSearchChanged"
       disabled-prop="inactive"
-      add-item-label="Добавить новое"
+      add-item-label="Свое значение"
+      add-item-button-label="Нажмите для добавления своего значения"
       loading-label="Поиск продолжается..."
       :loading="true"
       :searchable="searchableContinent" />

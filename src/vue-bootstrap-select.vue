@@ -21,8 +21,8 @@
           v-model="searchValue">
       </div>
       <ul>
-        <li v-show="addItemLabel"
-            class="v-dropdown-item"><a href="#" @click.prevent="addItemMethod" >{{ addItemLabel }}</a></li>
+        <li v-show="addItemButtonLabel || addItemLabel"
+            class="v-dropdown-item"><a href="#" @click.prevent="addItemMethod" >{{ addItemButtonLabel || addItemLabel }}</a></li>
         <li
           v-show="searchable && filteredOptions.length === 0 && searchValue.length !== 0"
           class="v-dropdown-item"
@@ -100,6 +100,10 @@ export default {
       default: 2000
     },
     addItemLabel: {
+      type: String,
+      default: null
+    },
+    addItemButtonLabel: {
       type: String,
       default: null
     },
@@ -289,7 +293,7 @@ export default {
     },
     addItemMethod() {
       Swal.fire({
-        title: this.addItemLabel,
+        title: this.addItemLabel || this.addItemButtonLabel,
         input: "text",
         inputValue: this.searchValue,
         showCancelButton: true,
