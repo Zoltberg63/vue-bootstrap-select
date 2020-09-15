@@ -37,7 +37,10 @@
           class="v-dropdown-item"
           :class="{'selected' : isSelectedOption(option, index), 'disabled': option[disabledProp]}"
           @click.prevent="onSelect(option, index)"
-        >{{ getOptionLabel(option) }}</li>
+        >
+          <slot name="beforeItem" :item="option"></slot>
+          {{ getOptionLabel(option) }}
+          <slot name="afterItem" :item="option"></slot></li>
       </ul>
     </div>
   </div>

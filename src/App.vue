@@ -39,7 +39,9 @@
       add-item-button-label="Нажмите для добавления своего значения"
       loading-label="Поиск продолжается..."
       :loading="true"
-      :searchable="searchableContinent" />
+      :searchable="searchableContinent">
+      <template v-slot:afterItem="slotProps"><span v-if="slotProps.item.after">{{ slotProps.item.after }}</span></template>
+    </VSelect>
   </div>
 </template>
 
@@ -62,7 +64,7 @@ export default {
       ],
       contients: [
         { value: 0, text: "Africa" },
-        { value: 1, text: "America" },
+        { value: 1, text: "America", after: "--- USA" },
         { value: 2, text: "Asia" },
         { value: 3, text: "Europe" },
         { value: 4, text: "Oceania" },
