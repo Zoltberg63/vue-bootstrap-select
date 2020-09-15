@@ -35,7 +35,7 @@
           v-for="(option, index) in filteredOptions"
           :key="`v-select-${index}`"
           class="v-dropdown-item"
-          :class="{'selected' : isSelectedOption(option, index), 'disabled': option[disabledProp]}"
+          :class="getOptionClasses(option, index)"
           @click.prevent="onSelect(option, index)"
         >
           <slot name="beforeItem" :item="option"></slot>
@@ -273,6 +273,20 @@ export default {
         return option[this.textProp];
       }
       return option;
+    },
+    getOptionClasses(option, index) {
+      let classes = {
+        selected: this.isSelectedOption(option, index),
+        disabled: option[this.disabledProp]
+      };
+      if (
+        option !== null &&
+        typeof option === "object" &&
+        typeof option.classes === "object"
+      ) {
+        return Object.assign(classes, option.classes);
+      }
+      return classes;
     },
     isSelectedOption(option, index) {
       if (this.typeAheadPointer === -1 && this.selectedValue) {

@@ -65,7 +65,7 @@ export default {
       contients: [
         { value: 0, text: "Africa" },
         { value: 1, text: "America", after: "--- USA" },
-        { value: 2, text: "Asia" },
+        { value: 2, text: "Asia", classes: { "gray-option": true } },
         { value: 3, text: "Europe" },
         { value: 4, text: "Oceania" },
         { value: 5, text: "Antartica" },
